@@ -2106,9 +2106,9 @@ class ProxyServerSystem extends EventEmitter {
     this._loadConfiguration(); // 这个函数会执行下面的_loadConfiguration
     this.streamingMode = this.config.streamingMode;
 
-    this.forceThinking = false;
-    this.forceWebSearch = false;
-    this.forceUrlContext = false;
+    this.forceThinking = process.env.FORCE_THINKING === "true";
+    this.forceWebSearch = process.env.FORCE_WEB_SEARCH === "true";
+    this.forceUrlContext = process.env.FORCE_URL_CONTEXT === "true";
 
     this.authSource = new AuthSource(this.logger);
     this.browserManager = new BrowserManager(
